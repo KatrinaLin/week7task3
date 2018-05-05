@@ -11,6 +11,15 @@ buildscript {
     dependencies {
         classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
     }
+
+    repositories {
+        maven {
+            url "https://plugins.gradle.org/m2/"
+        }
+    }
+    dependencies {
+        classpath "gradle.plugin.com.boxfuse.client:gradle-plugin-publishing:5.0.7"
+    }
 }
 
 apply plugin: 'java'
@@ -19,6 +28,7 @@ apply plugin: 'maven'
 apply plugin: 'org.springframework.boot'
 apply plugin: 'io.spring.dependency-management'
 apply plugin: 'war'
+apply plugin: 'org.flywaydb.flyway'
 
 repositories {
     maven {
@@ -27,6 +37,13 @@ repositories {
     maven {
         url 'https://repo.spring.io/libs-release'
     }
+}
+
+flyway {
+    driver = 'com.mysql.jdbc.Driver'
+    url = 'jdbc:mysql://localhost:3306/employee_db'
+    user = 'root'
+    password = 'root'
 }
 
 configurations {
