@@ -24,6 +24,9 @@ repositories {
     maven {
         url "http://ec2-54-222-235-15.cn-north-1.compute.amazonaws.com.cn:8081/repository/maven-central/"
     }
+    maven {
+        url 'https://repo.spring.io/libs-release'
+    }
 }
 
 configurations {
@@ -33,5 +36,6 @@ configurations {
 dependencies {
     runtime('mysql:mysql-connector-java')
     compile('org.springframework.boot:spring-boot-starter-web')
+    compile('org.springframework.data:spring-data-jpa:2.0.6.RELEASE')
     testCompile('org.springframework.boot:spring-boot-starter-test')
 }
