@@ -24,4 +24,5 @@ public interface EmployeeRepository extends JpaRepository<Employee, Long> {
     //6.将*的名字改成*,输出这次修改影响的行数
 
     //7.删除姓名是*的employee
+    void deleteByName(String name);
 }
