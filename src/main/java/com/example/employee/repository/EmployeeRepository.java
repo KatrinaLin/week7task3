@@ -1,6 +1,8 @@
 package com.example.employee.repository;
 
 import com.example.employee.entity.Employee;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
@@ -21,6 +23,9 @@ public interface EmployeeRepository extends JpaRepository<Employee, Long> {
 
     //4.实现对Employee的分页查询，每页两个数据
     // Just use the findAll method inherited from JpaRepository
+    default Page<Employee> showTwoEmployeesPerPage() {
+        return findAll(PageRequest.of(0,2));
+    };
 
     //5.查找**的所在的公司的公司名称
     @Query(value = "SELECT companyName FROM Employee e, Company c WHERE e.name = ?1 AND e.companyId = c.id",
